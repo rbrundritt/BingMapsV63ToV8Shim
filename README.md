@@ -14,21 +14,33 @@ Implementing this solution requires the following steps:
 2. Add this file to your application like you would any other JavaScript file. 
 3. Locate the script tag in your application which loads the Bing Maps V6.3 web control. It will look something like one of the following, but may have additional query parameters in the URL.  
 
-`<script type="text/javascript" src="http://dev.virtualearth.net/MapControl/mapcontrol.ashx?v=6.3"></script>`
+```html
+<script type="text/javascript" src="http://dev.virtualearth.net/MapControl/mapcontrol.ashx?v=6.3"></script>
+```
 
-`<script type="text/javascript" src="http://ecn.dev.virtualearth.net/MapControl/mapcontrol.ashx?v=6.3"></script>`
+```html
+<script type="text/javascript" src="http://ecn.dev.virtualearth.net/MapControl/mapcontrol.ashx?v=6.3"></script>
+```
 
-`<script type="text/javascript" src="https://dev.virtualearth.net/MapControl/mapcontrol.ashx?v=6.3&s=1"></script>`
+```html
+<script type="text/javascript" src="https://dev.virtualearth.net/MapControl/mapcontrol.ashx?v=6.3&s=1"></script>
+```
 
-`<script type="text/javascript" src="https://ecn.dev.virtualearth.net/MapControl/mapcontrol.ashx?v=6.3&s=1"></script>`
+```html
+<script type="text/javascript" src="https://ecn.dev.virtualearth.net/MapControl/mapcontrol.ashx?v=6.3&s=1"></script>
+```
 
 4. Replace this map script tag with the following script tag.
 
-`<script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol'></script>`
+```html
+<script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol'></script>
+```
 
 5. Right after the map script tag add an additional script tag that points to where the **BingMapsV63ToV8Shim.js** file is hosted in your application.
 
-`<script type="text/javascript" src="scripts/BingMapsV63ToV8Shim.js"></script>`
+```html
+<script type="text/javascript" src="scripts/BingMapsV63ToV8Shim.js"></script>
+```
 
 Note that you will need to change the URL path to point to the proper location in your application.
 
@@ -36,7 +48,7 @@ Note that you will need to change the URL path to point to the proper location i
 
 It is important to ensure that your application is properly implementing authenication. V6.x required the map to be authenicated but did not display any warnings when this was not done. Bing Maps V8 will display a warning over top of the map if a Bing Maps key is not specified when loading the map. 
 
-In your code, find where the `VEMap` class is created and also where the `LoadMap` function of that class is being called. Between these two lines of code should be call to the `SetCredentials` function. HEre is what this should look like:
+In your code, find where the `VEMap` class is created and also where the `LoadMap` function of that class is being called. Between these two lines of code should be call to the `SetCredentials` function. Here is what this should look like:
 
 ```javascript
 var map = new VEMap('myMap');
@@ -117,12 +129,6 @@ If you do not see the call to the `SetCredentials` function, your application is
 * Birdseye only partially supported through API. 
 * There are many functions and classes that are not exposed for various reasons. These are clearly marked in the source code as “not supported”. 
 
-## License
-
-MIT
- 
-See [License](LICENSE) for full license text.
-
 ## Additional Resources
 
 * [Bing Maps V6.3 to V8 Migration Guide](https://social.technet.microsoft.com/wiki/contents/articles/34568.bing-maps-v6-3-to-v8-migration-guide.aspx)
@@ -133,3 +139,9 @@ See [License](LICENSE) for full license text.
 * [Bing Maps Blog](http://blogs.bing.com/maps)
 * [Bing Maps forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=bingmapsajax&filter=alltypes&sort=lastpostdesc)
 * [Bing Maps for Enterprise site](https://www.microsoft.com/maps/)
+
+## License
+
+MIT
+ 
+See [License](LICENSE) for full license text.
