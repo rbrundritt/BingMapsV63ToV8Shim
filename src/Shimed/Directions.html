@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>Core Map Control Sample</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="../settings.js"></script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?branch=experimental'></script>
+    <script type="text/javascript" src="../scripts/BingMapsV63ToV8Shim.js"></script>
+    <script type="text/javascript">
+    var map = null;
+    function GetMap()
+    {
+        map = new VEMap('myMap');
+        map.SetCredentials(YourBingMapsKey);
+        map.LoadMap();
+
+        getDirections();
+    }
+
+    function getDirections() {
+        var myOptions = new VERouteOptions();
+        myOptions.SetBestMapView = true; 
+        myOptions.RouteCallback = myRouteHandler;
+
+        map.GetDirections([
+            document.getElementById('fromTbx').value,
+            document.getElementById('toTbx').value
+        ], myOptions);
+    }
+
+    function myRouteHandler(route)
+    {
+        // Unroll route and populate alert text
+        var legs = route.RouteLegs;
+        var turns = "Turn-by-Turn Directions<br/>";
+        var leg = null;
+        var turnNum = 0; // The turn #
+        var totalDistance = 0; // The sum of all leg distances
+        // Get intermediate legs
+        for(var i = 0; i < legs.length; i++)
+        {
+            // Get this leg so we don't have to dereference multiple times
+            leg = legs[i]; // Leg is a VERouteLeg object
+            // Unroll each intermediate leg
+            var turn = null; // The itinerary leg
+            var legDistance = null; // The distance for this leg
+            for(var j = 0; j < leg.Itinerary.Items.length; j ++)
+            {
+                turnNum++;
+                // turn is a VERouteItineraryItem object
+                turn = leg.Itinerary.Items[j];
+                turns += turnNum + ": " + turn.Text;
+                legDistance = turn.Distance;
+                totalDistance += legDistance;
+                // Round distances to 1/10ths
+                // Note that miles is the default
+                turns += " (" + legDistance.toFixed(1) + " miles)<br/>";
+            }
+        }
+        turns += "Total distance: " + totalDistance.toFixed(1) + " miles<br/>";
+        // Show directions
+        document.getElementById('output').innerHTML = turns;
+    }
+    </script>
+</head>
+<body onload="GetMap();">
+    <div id='myMap' style="position:relative; width:800px; height:600px;"></div>
+
+    From: <input type="text" id="fromTbx" value="Seattle, WA" />
+    To: <input type="text" id="toTbx" value="Redmond, WA" />
+    <input type="button" onclick="getDirections()" value="Get Directions" />
+    <br />
+    <input type="button" onclick="map.DeleteRoute();" value="Delete Directions" />
+
+    <div id="output"></div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>Core Map Control Sample</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="../settings.js"></script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?branch=experimental'></script>
+    <script type="text/javascript" src="../scripts/BingMapsV63ToV8Shim.js"></script>
+    <script type="text/javascript">
+    var map = null;
+    function GetMap()
+    {
+        map = new VEMap('myMap');
+        map.SetCredentials(YourBingMapsKey);
+        map.LoadMap(null, 2);
+
+        var tileSource = new VETileSourceSpecification("SeattleTransit", "https://bingmapsisdk.blob.core.windows.net/katrinatiles/%4.png");
+        tileSource.Bounds = [new VELatLongRectangle(new VELatLong(35.176, -101.065), new VELatLong(14.01, -80.538))];
+        tileSource.MinZoomLevel = 1;
+        tileSource.MaxZoomLevel = 10;
+        tileSource.Opacity = 0.6;
+
+        map.AddTileLayer(tileSource, true);
+    }
+    </script>
+</head>
+<body onload="GetMap();">
+    <div id='myMap' style="position:relative; width:800px; height:600px;"></div>
+</body>
+</html>

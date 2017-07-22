@@ -1,0 +1,1 @@
+﻿var YourBingMapsKey = 'Your Bing Maps Key';

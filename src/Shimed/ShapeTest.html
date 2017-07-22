@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>Core Map Control Sample</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="../settings.js"></script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?branch=experimental'></script>
+    <script type="text/javascript" src="../scripts/BingMapsV63ToV8Shim.js"></script>
+    <script type="text/javascript">
+    var map = null;
+    function GetMap()
+    {
+        map = new VEMap('myMap');
+        map.SetCredentials(YourBingMapsKey);
+        map.LoadMap(new VELatLong(0, 0), 1);
+
+        var points = [
+            new VELatLong(45.01188, -111.06687, 0, VEAltitudeMode.RelativeToGround),
+            new VELatLong(45.01534, -104.06324, 0, VEAltitudeMode.RelativeToGround),
+            new VELatLong(41.01929, -104.06, 0, VEAltitudeMode.RelativeToGround),
+            new VELatLong(41.003, -111.05878, 0, VEAltitudeMode.RelativeToGround)
+        ];
+
+        var myPolygon = new VEShape(VEShapeType.Polygon, points);
+        map.AddShape(myPolygon);
+        myPolygon.SetTitle("My Polygon");
+        myPolygon.SetDescription("This is the description for my polygon.");
+        myPolygon.SetLineColor(new VEColor(100, 0, 100, 0.39));
+
+        // Create an array with a large number of pushpins:
+        var center = map.GetCenter();
+        var shapes = new Array();
+        for (i=0 ; i < 15; ++i)
+        {
+            var shape = new VEShape(VEShapeType.Pushpin, new VELatLong(center.Latitude + Math.random() * 20 - 10, center.Longitude + Math.random() * 20 - 10));
+            shape.SetTitle("My Pushpin " + i);
+            shapes.push(shape);
+        }
+
+        // Create an empty shape layer and add it to the map:
+        var shapeLayer = new VEShapeLayer();
+        map.AddShapeLayer(shapeLayer);
+
+        // Add the array of pushpins to the shape layer:
+        shapeLayer.AddShape(shapes);
+    }
+    </script>
+</head>
+<body onload="GetMap();">
+    <div id='myMap' style="position:relative; width:800px; height:600px;"></div>
+</body>
+</html>

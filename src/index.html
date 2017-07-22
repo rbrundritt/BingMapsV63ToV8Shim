@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script>
+        function loadSample(sample) {
+            document.getElementById('v63').src = 'Original/' + sample;
+            document.getElementById('v8').src = 'Shimed/' + sample;
+        }
+    </script>
+    <style>
+        iframe{
+            width:48vw;
+            height:calc(100vh - 150px);
+        }
+    </style>
+</head>
+<body>
+    <h1>V6.3 to V8 Shim Samples</h1>
+
+    <a href="javascript:loadSample('Basic.html')">Basic</a> 
+    <a href="javascript:loadSample('Directions.html')">Directions</a> 
+    <a href="javascript:loadSample('DraggablePushpin.html')">Draggable Pushpin</a> 
+    <a href="javascript:loadSample('Events.html')">Events</a> 
+    <a href="javascript:loadSample('ImportData.html')">Import Data (GeoRSS, KML...)</a> 
+    <a href="javascript:loadSample('Search.html')">Search</a> 
+    <a href="javascript:loadSample('ShapeTest.html')">Shapes</a> 
+    <a href="javascript:loadSample('TileLayer.html')">TileLayer</a> 
+    <br/>
+    <br />
+    <table>
+        <tr>
+            <td><iframe id="v63"></iframe></td>
+            <td><iframe id="v8"></iframe></td>
+        </tr>
+    </table>
+</body>
+</html>

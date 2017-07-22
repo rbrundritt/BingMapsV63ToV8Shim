@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>Core Map Control Sample</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="../settings.js"></script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?branch=experimental'></script>
+    <script type="text/javascript" src="../scripts/BingMapsV63ToV8Shim.js"></script>
+    <script type="text/javascript">
+    var map = null;
+    function GetMap()
+    {
+        map = new VEMap('myMap');
+        map.SetCredentials(YourBingMapsKey);
+        map.LoadMap(new VELatLong(0, 0), 1);
+        
+        var points = [
+            new VELatLong(45.01188, -111.06687, 0, VEAltitudeMode.RelativeToGround),
+            new VELatLong(45.01534, -104.06324, 0, VEAltitudeMode.RelativeToGround),
+            new VELatLong(41.01929, -104.06, 0, VEAltitudeMode.RelativeToGround),
+            new VELatLong(41.003, -111.05878, 0, VEAltitudeMode.RelativeToGround)
+        ];
+        var myPolygon = new VEShape(VEShapeType.Polygon, points);
+        map.AddShape(myPolygon);
+
+        // Create an array with a large number of pushpins:
+        var center = map.GetCenter();
+        var shapes = new Array();
+        for (i = 0 ; i < 150; ++i) {
+            var shape = new VEShape(VEShapeType.Pushpin, new VELatLong(center.Latitude + Math.random() * 20 - 10, center.Longitude + Math.random() * 20 - 10));
+            shape.SetTitle("My Pushpin " + i);
+            shapes.push(shape);
+        }
+
+        // Create an empty shape layer and add it to the map:
+        var shapeLayer = new VEShapeLayer();
+        map.AddShapeLayer(shapeLayer);
+
+        // Add the array of pushpins to the shape layer:
+        shapeLayer.AddShape(shapes);
+
+        addAllEvents();
+    }    
+
+    function highlight(id) {
+        //Highlight the div to indicate that the event has fired.
+        document.getElementById(id).style.background = 'LightGreen';
+
+        //Remove the highlighting after a second.
+        setTimeout(function () { document.getElementById(id).style.background = 'white'; }, 1000);
+    }
+
+    function addAllEvents() {
+        map.AttachEvent('onchangeview', function () { highlight('mapViewChange'); });
+        map.AttachEvent('onstartpan', function () { highlight('onstartpan'); });
+        map.AttachEvent('onendpan', function () { highlight('onendpan'); });
+        map.AttachEvent('onstartzoom', function () { highlight('onstartzoom'); });
+        map.AttachEvent('onendzoom', function () { highlight('onendzoom'); });
+        map.AttachEvent('onresize', function () { highlight('onresize'); });
+
+        map.AttachEvent('onclick', function (e) {
+            if (e.leftMouseButton) {
+                highlight('mapClick');
+            } else {
+                highlight('mapRightClick');
+            }
+        });
+        map.AttachEvent('ondoubleclick', function (e) {
+            highlight('mapDblClick');
+        });
+        map.AttachEvent('onmousedown', function (e) {
+            highlight('mapMousedown');
+        });
+        map.AttachEvent('onmouseout', function (e) {
+            highlight('mapMouseout');
+        });
+        map.AttachEvent('onmouseover', function (e) {
+            highlight('mapMouseover');
+        });
+        map.AttachEvent('onmouseup', function (e) {
+            highlight('mapMouseup');
+        });
+        map.AttachEvent('onmousewheel', function () { highlight('mapMousewheel'); });
+
+        map.AttachEvent('onchangemapstyle', function (e) {
+            highlight('maptypechanged');
+        });
+
+        map.AttachEvent('onkeydown', function () { highlight('onkeydown'); });
+        map.AttachEvent('onkeypress', function () { highlight('onkeypress'); });
+        map.AttachEvent('onkeyup', function () { highlight('onkeyup'); });
+    }
+
+    function removeAllEvents() {
+        map.DetachEvent('onchangeview');
+        map.DetachEvent('onstartpan');
+        map.DetachEvent('onendpan');
+        map.DetachEvent('onstartzoom');
+        map.DetachEvent('onendzoom');
+        map.DetachEvent('onresize');
+
+        map.DetachEvent('onclick');
+        map.DetachEvent('ondoubleclick');
+        map.DetachEvent('onmousedown');
+        map.DetachEvent('onmouseout');
+        map.DetachEvent('onmouseover');
+        map.DetachEvent('onmouseup');
+        map.DetachEvent('onmousewheel');
+
+        map.DetachEvent('onchangemapstyle');
+    }
+    </script>
+</head>
+<body onload="GetMap();">
+    <div id='myMap' style="position:relative; width:800px; height:400px;"></div>
+
+    <input type="button" onclick="addAllEvents()" value="Add All Events" />
+    <input type="button" onclick="removeAllEvents()" value="Remove All Events" />
+        
+    <div id="mapViewChange">viewchange</div>
+    <div id="onstartpan">onstartpan</div>
+    <div id="onendpan">onendpan</div>
+    <div id="onstartzoom">onstartzoom</div>
+    <div id="onendzoom">onendzoom</div>
+    <div id="onresize">onresize</div>
+
+    <div id="mapClick">click</div>
+    <div id="mapDblClick">dblclick</div>
+    <div id="mapRightClick">rightclick</div>
+    <div id="mapMousedown">mousedown</div>
+    <div id="mapMouseout">mouseout</div>
+    <div id="mapMouseover">mouseover</div>
+    <div id="mapMouseup">mouseup</div>
+    <div id="mapMousewheel">mousewheel</div>
+
+    <div id="maptypechanged">maptypechanged</div>
+    
+    <div id="onkeypress">onkeypress</div>
+    <div id="onkeydown">onkeydown</div>
+    <div id="onkeyup">onkeyup</div>
+</body>
+</html>

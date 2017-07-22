@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>Core Map Control Sample</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../settings.js"></script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?branch=experimental'></script>
+    <script type="text/javascript" src="../scripts/BingMapsV63ToV8Shim.js"></script>
+    <script type="text/javascript">
+    var map;
+
+    function GetMap()
+    {
+        map = new VEMap('myMap');
+        map.SetCredentials(YourBingMapsKey);
+        map.LoadMap();
+    }
+
+    function poiSearch() {
+        map.DeleteAllShapes();
+
+        var what = document.getElementById('whatTbx').value;
+        var where = document.getElementById('whereTbx').value;
+
+        map.Find(what, where, null, null, null, 20, true, null, null, true, poiCallback);
+    }
+
+    function poiCallback(results) {
+        if (results && results.length > 0) {
+            alert(results[0].Name);
+        }
+    }
+
+    function geocode() {
+        map.DeleteAllShapes();
+
+        var where = document.getElementById('geocodeTbx').value;
+        map.Geocode(where, geocodeCallback);
+    }
+
+    function geocodeCallback(layer, results, places, moreResults, error) {
+        if (places && places.length > 0) {
+            for (var i = 0; i < places.length; i++) {
+                var shape = new VEShape(VEShapeType.Pushpin, places[i].LatLong);
+                shape.SetTitle(places[i].Name);
+                map.AddShape(shape);
+            }
+        }
+    }
+
+    function reverseGeocode() {
+        map.DeleteAllShapes();
+        map.FindLocations(map.GetCenter(), reverseGeocodeCallback);
+    }
+
+    function reverseGeocodeCallback(places) {
+        if (places && places.length > 0) {
+            for (var i = 0; i < places.length; i++) {
+                var shape = new VEShape(VEShapeType.Pushpin, places[i].LatLong);
+                shape.SetTitle(places[i].Name);
+                map.AddShape(shape);
+            }
+        }
+    }
+
+    function search() {
+        map.DeleteAllShapes();
+
+        var query = document.getElementById('searchTbx').value;
+        map.Search(query, searchCallback);
+    }
+
+    function searchCallback(layer, results, places, moreResults, error) {
+        if (places && places.length > 0) {
+            for (var i = 0; i < places.length; i++) {
+                var shape = new VEShape(VEShapeType.Pushpin, places[i].LatLong);
+                shape.SetTitle(places[i].Name);
+                map.AddShape(shape);
+            }
+        }
+    }
+    </script>
+</head>
+<body onload="GetMap();">
+    <div id='myMap' style="position:relative; width:800px; height:600px;"></div>
+
+    What: <input type="text" id="whatTbx" value="Coffee" />
+    Where: <input type="text" id="whereTbx" value="Seattle" />
+    <input type="button" onclick="poiSearch()" value="POI Search" />
+    <br />
+
+    Search: <input type="text" id="searchTbx" value="pizza in New York" />
+    <input type="button" onclick="search()" value="Search" />
+    <br />
+
+    Find: <input type="text" id="geocodeTbx" value="Seattle" />
+    <input type="button" onclick="geocode()" value="Geocode" />
+    <br />
+
+    <input type="button" onclick="reverseGeocode()" value="Reverse Geocode" />
+</body>
+</html>
