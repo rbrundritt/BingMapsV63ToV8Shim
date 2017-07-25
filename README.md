@@ -72,7 +72,9 @@ If you do not see the call to the `SetCredentials` function, your application is
 <head>
     <title>Core Map Control Sample</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
     <script type="text/javascript" src="http://ecn.dev.virtualearth.net/MapControl/mapcontrol.ashx?v=6.3"></script>
+
     <script type="text/javascript">
     var map = null;
     function GetMap()
@@ -97,8 +99,10 @@ If you do not see the call to the `SetCredentials` function, your application is
 <head>
     <title>Core Map Control Sample</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol'></script>
     <script type="text/javascript" src="scripts/BingMapsV63ToV8Shim.js"></script>
+
     <script type="text/javascript">
     var map = null;
     function GetMap()
