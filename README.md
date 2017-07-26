@@ -1,6 +1,6 @@
 # Bing Maps V6.x To V8 Shim
 
-Bing Maps (formerly known as Virtual Earth) was deprecated in November of 2016 and will be taken offline in August of 2017. This project which wraps Bing Maps V8 and exposes an API that is very similar to Bing Maps V6.x. In many cases this shim can be implemented in an existing application using Bing Maps 6.x with a only few lines of code and provide majority of the v6.x functionality on a Bing Maps V8 web control. 
+Bing Maps (formerly known as Virtual Earth) was deprecated in November of 2016 and will be taken offline in August of 2017. This project wraps Bing Maps V8 and exposes an API that is very similar to Bing Maps V6.x. In many cases this shim can be implemented in an existing application using Bing Maps 6.x with a only few lines of code and provide majority of the v6.x functionality on a Bing Maps V8 web control. 
 
 This shim has some known limitations and is only meant to help keep applications that are using Bing Maps v6.x running long enough for developers to be fully migrated their applications to Bing Maps V8. This should not be condsidered a long term solution. See the [Bing Maps V6.3 to V8 Migration Guide](https://social.technet.microsoft.com/wiki/contents/articles/34568.bing-maps-v6-3-to-v8-migration-guide.aspx) for detailson how to migrate your app.
 
@@ -125,13 +125,13 @@ If you do not see the call to the `SetCredentials` function, your application is
 * Only [Bing Maps V8 supported browsers](https://msdn.microsoft.com/en-us/library/mt712867.aspx) will support this shim.
 * Some features require using the experimental branch of the V8 control, primarily the **ImportShapeLayerData** function which imports KML and GeoRSS files. Add `?branch=experimental` to the map script URL. This should only be the case until the August update to the Bing Maps V8 web control.
 * No support for HTML based pushpins. Pushpins should fall back to the default pushpins in Bing Maps V8 (purple circles).
-* CSS hacks used in v6.3 wonít work.
+* CSS hacks used in v6.3 won‚Äôt work.
 * Events will only honor the last attached event of a certain type. For example, if your application attaches two click events to the map, only the last attached event will be fired.
 * No support for preventing event bubbling/propagation. In v6.3 you could return false in an event handler and it would prevent event from triggering any other events that would normally fire with that event.
 * The infobox box will use the V8 default infobox. 
 * 3D maps not supported. Note that the 3D maps were deprecated in 2010.
 * Birdseye only partially supported through API. 
-* There are many functions and classes that are not exposed for various reasons. These are clearly marked in the source code as ìnot supportedî. 
+* There are many functions and classes that are not exposed for various reasons. These are clearly marked in the source code as ‚Äúnot supported‚Äù. 
 
 ## Additional Resources
 
