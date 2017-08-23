@@ -119,6 +119,9 @@ If you do not see the call to the `SetCredentials` function, your application is
 </html>
 ```
 
+## Common Issues
+
+* Bing Maps V8 is designed to be an asynchronous control. As such it loads a lot of additional resources in the background without blocking the main UI thread. However, this means that the map API isn't available to your code until the onload event of the page body has fired. Any JavaScript code that tries to access the map API before the onload event fires will throw an error as it won't recognive the code. This will most likely happen if you have any global variables that are initialized with an object from the map API. To address this, define the variables as null and set them in the callback function for the onload event. 
 
 ## Known Limitations
 

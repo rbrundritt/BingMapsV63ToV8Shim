@@ -2,11 +2,11 @@ var VEShapeCounter = 1000;
 var VEShapeType = (function () {
     function VEShapeType() {
     }
-    VEShapeType.Pushpin = 'Pushpin';
-    VEShapeType.Polyline = 'Polyline';
-    VEShapeType.Polygon = 'Polygon';
     return VEShapeType;
 }());
+VEShapeType.Pushpin = 'Pushpin';
+VEShapeType.Polyline = 'Polyline';
+VEShapeType.Polygon = 'Polygon';
 var VEMapMode;
 (function (VEMapMode) {
     VEMapMode[VEMapMode["Mode2D"] = 0] = "Mode2D";
@@ -15,24 +15,24 @@ var VEMapMode;
 var VEMapStyle = (function () {
     function VEMapStyle() {
     }
-    VEMapStyle.Road = 'r';
-    VEMapStyle.Shaded = 's';
-    VEMapStyle.Aerial = 'a';
-    VEMapStyle.Hybrid = 'h';
-    VEMapStyle.Oblique = 'o';
-    VEMapStyle.Birdseye = 'o';
-    VEMapStyle.BirdseyeHybrid = 'b';
     return VEMapStyle;
 }());
+VEMapStyle.Road = 'r';
+VEMapStyle.Shaded = 's';
+VEMapStyle.Aerial = 'a';
+VEMapStyle.Hybrid = 'h';
+VEMapStyle.Oblique = 'o';
+VEMapStyle.Birdseye = 'o';
+VEMapStyle.BirdseyeHybrid = 'b';
 var VEOrientation = (function () {
     function VEOrientation() {
     }
-    VEOrientation.North = 'North';
-    VEOrientation.South = 'South';
-    VEOrientation.East = 'East';
-    VEOrientation.West = 'West';
     return VEOrientation;
 }());
+VEOrientation.North = 'North';
+VEOrientation.South = 'South';
+VEOrientation.East = 'East';
+VEOrientation.West = 'West';
 var VELatLong = (function () {
     function VELatLong(latitude, longitude) {
         this._location = new Microsoft.Maps.Location(latitude, longitude);
@@ -2015,6 +2015,7 @@ var VERouteOptions = (function () {
         this.RouteWeight = 6;
         this.SetBestMapView = true;
         this.UseTraffic = true;
+        //Not Supported: RouteZIndex, ShowDisambiguation, ShowErrorMessage, UseMWS, 
     }
     return VERouteOptions;
 }());
@@ -2060,12 +2061,12 @@ var VEShapeSourceSpecification = (function () {
 var VEDataType = (function () {
     function VEDataType() {
     }
-    VEDataType.GeoRSS = 'g';
-    VEDataType.VECollection = 'c';
-    VEDataType.ImportXML = 'i';
-    VEDataType.VETileSource = 't';
     return VEDataType;
 }());
+VEDataType.GeoRSS = 'g';
+VEDataType.VECollection = 'c';
+VEDataType.ImportXML = 'i';
+VEDataType.VETileSource = 't';
 var VESearchOptions = (function () {
     function VESearchOptions() {
         this.CreateResults = true;
@@ -2110,18 +2111,18 @@ var VEClusterSpecification = (function () {
 var VEDashboardSize = (function () {
     function VEDashboardSize() {
     }
-    VEDashboardSize.Normal = 'normal';
-    VEDashboardSize.Small = 'small';
-    VEDashboardSize.Tiny = 'tiny';
     return VEDashboardSize;
 }());
+VEDashboardSize.Normal = 'normal';
+VEDashboardSize.Small = 'small';
+VEDashboardSize.Tiny = 'tiny';
 var VEDistanceUnit = (function () {
     function VEDistanceUnit() {
     }
-    VEDistanceUnit.Miles = 'm';
-    VEDistanceUnit.Kilometers = 'k';
     return VEDistanceUnit;
 }());
+VEDistanceUnit.Miles = 'm';
+VEDistanceUnit.Kilometers = 'k';
 var VEFailedShapeRequest;
 (function (VEFailedShapeRequest) {
     VEFailedShapeRequest[VEFailedShapeRequest["DoNotDraw"] = 0] = "DoNotDraw";
@@ -2195,12 +2196,13 @@ var VERouteItineraryDeprecated = (function () {
 var VERouteType = (function () {
     function VERouteType() {
     }
-    VERouteType.Shortest = 'q';
-    VERouteType.Quickest = 's';
     return VERouteType;
 }());
+VERouteType.Shortest = 'q';
+VERouteType.Quickest = 's';
 var VEShapeAccuracy;
 (function (VEShapeAccuracy) {
     VEShapeAccuracy[VEShapeAccuracy["None"] = 0] = "None";
     VEShapeAccuracy[VEShapeAccuracy["Pushpin"] = 1] = "Pushpin";
 })(VEShapeAccuracy || (VEShapeAccuracy = {}));
+//# sourceMappingURL=BingMapsV63ToV8Shim.js.map
