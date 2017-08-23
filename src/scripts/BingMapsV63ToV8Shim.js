@@ -493,10 +493,10 @@ var VEShapeLayer = (function () {
         this._layer.metadata.description = val;
     };
     VEShapeLayer.prototype.GetTitle = function () {
-        return this._layer.metadata.description;
+        return this._layer.metadata.title;
     };
     VEShapeLayer.prototype.SetTitle = function (val) {
-        this._layer.metadata.description = val;
+        this._layer.metadata.title = val;
     };
     VEShapeLayer.prototype.GetShapeById = function (id) {
         var shapes = this._layer.getPrimitives();

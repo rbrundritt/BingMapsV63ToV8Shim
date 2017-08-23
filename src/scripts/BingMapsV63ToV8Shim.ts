@@ -605,11 +605,11 @@ class VEShapeLayer {
     }
 
     public GetTitle(): string {
-        return this._layer.metadata.description;
+        return this._layer.metadata.title;
     }
 
     public SetTitle(val: string) {
-        this._layer.metadata.description = val;
+        this._layer.metadata.title = val;
     }
 
     public GetShapeById(id: string): VEShape {
