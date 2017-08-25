@@ -51,11 +51,20 @@
         // Add the array of pushpins to the shape layer:
         Layers[0].Layer.AddShape(shapes);
 
-        setTimeout(function () {
+       // setTimeout(function () {
             for (var Index = 0; Index < Layers.length; Index++) {
-                Layers[Index].Layer.DeleteAllShapes();
+                var index;
+                var Shape;
+
+                var cnt = Layers[Index].Layer.GetShapeCount();
+
+                for (index = 0; index < cnt; index++) {
+                    Shape = Layers[Index].Layer.GetShapeByIndex(index);
+
+
+                }       
             }
-        }, 2000);
+       // }, 2000);
     }
     </script>
 </head>

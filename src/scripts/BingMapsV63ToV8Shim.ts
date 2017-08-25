@@ -1079,8 +1079,18 @@ class VEMap {
         return VELatLongRectangle._fromLocationRect(this._map.getBounds());
     }
 
-    public SetMapView(bounds: VELatLongRectangle): void {
-        this._map.setView({ bounds: bounds._bounds });
+    public SetMapView(bounds: VELatLongRectangle | VELatLong[]): void {
+        if (bounds instanceof VELatLongRectangle) {
+            this._map.setView({ bounds: bounds._bounds });
+        } else if (bounds instanceof Array) {
+            var locs = [];
+
+            for (var i = 0; i < bounds.length; i++) {
+                locs.push(bounds[i]._location);
+            }
+            
+            this._map.setView({ bounds: Microsoft.Maps.LocationRect.fromLocations(locs), padding: 30 });
+        }
     }
 
     public GetShapeById(id: string): VEShape {
