@@ -284,7 +284,7 @@ class VEShape {
                 icon: icon.Image,
                 anchor: (icon.ImageOffset)? icon.ImageOffset._getPoint(): null,
                 text: icon.TextContent,
-                textOffset: (icon.ImageOffset) ? icon.TextOffset._getPoint(): null
+                textOffset: (icon.TextOffset) ? icon.TextOffset._getPoint(): null
             });
         }
     }
