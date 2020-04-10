@@ -4,8 +4,6 @@ Bing Maps (formerly known as Virtual Earth) was deprecated in November of 2016 a
 
 This shim has some known limitations and is only meant to help keep applications that are using Bing Maps v6.x running long enough for developers to be fully migrated their applications to Bing Maps V8. This should not be condsidered a long term solution. See the [Bing Maps V6.3 to V8 Migration Guide](https://social.technet.microsoft.com/wiki/contents/articles/34568.bing-maps-v6-3-to-v8-migration-guide.aspx) for detailson how to migrate your app.
 
-Try out the [Live Demo](http://rbrundritt.azurewebsites.net/migrations/v6shim/)
-
 ## How to implement
 
 Implementing this solution requires the following steps:
